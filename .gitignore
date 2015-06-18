@@ -1,8 +1,8 @@
-#**/.idea/
-#**/data/
-#**/target/
-#**/example-core/target/
-#**/example-format/target/
+.idea/
+data/
+target/
+example-core/target/
+example-format/target/
 
 # OS generated files #
 ######################
