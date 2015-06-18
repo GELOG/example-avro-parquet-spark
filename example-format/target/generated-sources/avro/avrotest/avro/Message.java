@@ -7,11 +7,11 @@ package avrotest.avro;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Message extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Message\",\"namespace\":\"avrotest.avro\",\"fields\":[{\"name\":\"ID\",\"type\":\"long\",\"default\":0},{\"name\":\"sender\",\"type\":\"string\",\"default\":\"unknown\"},{\"name\":\"recipient\",\"type\":\"string\",\"default\":\"unknown\"},{\"name\":\"content\",\"type\":\"string\",\"default\":\"\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Message\",\"namespace\":\"avrotest.avro\",\"fields\":[{\"name\":\"ID\",\"type\":\"long\",\"default\":0},{\"name\":\"sender\",\"type\":\"int\",\"default\":\"unknown\"},{\"name\":\"recipient\",\"type\":\"int\",\"default\":\"unknown\"},{\"name\":\"content\",\"type\":\"string\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   @Deprecated public long ID;
-  @Deprecated public java.lang.CharSequence sender;
-  @Deprecated public java.lang.CharSequence recipient;
+  @Deprecated public int sender;
+  @Deprecated public int recipient;
   @Deprecated public java.lang.CharSequence content;
 
   /**
@@ -24,7 +24,7 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
   /**
    * All-args constructor.
    */
-  public Message(java.lang.Long ID, java.lang.CharSequence sender, java.lang.CharSequence recipient, java.lang.CharSequence content) {
+  public Message(java.lang.Long ID, java.lang.Integer sender, java.lang.Integer recipient, java.lang.CharSequence content) {
     this.ID = ID;
     this.sender = sender;
     this.recipient = recipient;
@@ -47,8 +47,8 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: ID = (java.lang.Long)value$; break;
-    case 1: sender = (java.lang.CharSequence)value$; break;
-    case 2: recipient = (java.lang.CharSequence)value$; break;
+    case 1: sender = (java.lang.Integer)value$; break;
+    case 2: recipient = (java.lang.Integer)value$; break;
     case 3: content = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
@@ -72,7 +72,7 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
   /**
    * Gets the value of the 'sender' field.
    */
-  public java.lang.CharSequence getSender() {
+  public java.lang.Integer getSender() {
     return sender;
   }
 
@@ -80,14 +80,14 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'sender' field.
    * @param value the value to set.
    */
-  public void setSender(java.lang.CharSequence value) {
+  public void setSender(java.lang.Integer value) {
     this.sender = value;
   }
 
   /**
    * Gets the value of the 'recipient' field.
    */
-  public java.lang.CharSequence getRecipient() {
+  public java.lang.Integer getRecipient() {
     return recipient;
   }
 
@@ -95,7 +95,7 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'recipient' field.
    * @param value the value to set.
    */
-  public void setRecipient(java.lang.CharSequence value) {
+  public void setRecipient(java.lang.Integer value) {
     this.recipient = value;
   }
 
@@ -136,8 +136,8 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
     implements org.apache.avro.data.RecordBuilder<Message> {
 
     private long ID;
-    private java.lang.CharSequence sender;
-    private java.lang.CharSequence recipient;
+    private int sender;
+    private int recipient;
     private java.lang.CharSequence content;
 
     /** Creates a new Builder */
@@ -212,12 +212,12 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     /** Gets the value of the 'sender' field */
-    public java.lang.CharSequence getSender() {
+    public java.lang.Integer getSender() {
       return sender;
     }
     
     /** Sets the value of the 'sender' field */
-    public avrotest.avro.Message.Builder setSender(java.lang.CharSequence value) {
+    public avrotest.avro.Message.Builder setSender(int value) {
       validate(fields()[1], value);
       this.sender = value;
       fieldSetFlags()[1] = true;
@@ -231,18 +231,17 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
     
     /** Clears the value of the 'sender' field */
     public avrotest.avro.Message.Builder clearSender() {
-      sender = null;
       fieldSetFlags()[1] = false;
       return this;
     }
 
     /** Gets the value of the 'recipient' field */
-    public java.lang.CharSequence getRecipient() {
+    public java.lang.Integer getRecipient() {
       return recipient;
     }
     
     /** Sets the value of the 'recipient' field */
-    public avrotest.avro.Message.Builder setRecipient(java.lang.CharSequence value) {
+    public avrotest.avro.Message.Builder setRecipient(int value) {
       validate(fields()[2], value);
       this.recipient = value;
       fieldSetFlags()[2] = true;
@@ -256,7 +255,6 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
     
     /** Clears the value of the 'recipient' field */
     public avrotest.avro.Message.Builder clearRecipient() {
-      recipient = null;
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -291,8 +289,8 @@ public class Message extends org.apache.avro.specific.SpecificRecordBase impleme
       try {
         Message record = new Message();
         record.ID = fieldSetFlags()[0] ? this.ID : (java.lang.Long) defaultValue(fields()[0]);
-        record.sender = fieldSetFlags()[1] ? this.sender : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.recipient = fieldSetFlags()[2] ? this.recipient : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.sender = fieldSetFlags()[1] ? this.sender : (java.lang.Integer) defaultValue(fields()[1]);
+        record.recipient = fieldSetFlags()[2] ? this.recipient : (java.lang.Integer) defaultValue(fields()[2]);
         record.content = fieldSetFlags()[3] ? this.content : (java.lang.CharSequence) defaultValue(fields()[3]);
         return record;
       } catch (Exception e) {

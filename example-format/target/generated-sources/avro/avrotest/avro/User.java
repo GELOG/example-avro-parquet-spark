@@ -7,8 +7,9 @@ package avrotest.avro;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class User extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"avrotest.avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\",\"default\":\"unknown\"},{\"name\":\"age\",\"type\":\"int\",\"default\":0},{\"name\":\"favorite_color\",\"type\":\"string\",\"default\":\"unknown\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"avrotest.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\",\"default\":\"unknown\"},{\"name\":\"name\",\"type\":\"string\",\"default\":\"unknown\"},{\"name\":\"age\",\"type\":\"int\",\"default\":0},{\"name\":\"favorite_color\",\"type\":\"string\",\"default\":\"unknown\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
+  @Deprecated public int id;
   @Deprecated public java.lang.CharSequence name;
   @Deprecated public int age;
   @Deprecated public java.lang.CharSequence favorite_color;
@@ -23,7 +24,8 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   /**
    * All-args constructor.
    */
-  public User(java.lang.CharSequence name, java.lang.Integer age, java.lang.CharSequence favorite_color) {
+  public User(java.lang.Integer id, java.lang.CharSequence name, java.lang.Integer age, java.lang.CharSequence favorite_color) {
+    this.id = id;
     this.name = name;
     this.age = age;
     this.favorite_color = favorite_color;
@@ -33,9 +35,10 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   // Used by DatumWriter.  Applications should not call. 
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return name;
-    case 1: return age;
-    case 2: return favorite_color;
+    case 0: return id;
+    case 1: return name;
+    case 2: return age;
+    case 3: return favorite_color;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -43,11 +46,27 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: name = (java.lang.CharSequence)value$; break;
-    case 1: age = (java.lang.Integer)value$; break;
-    case 2: favorite_color = (java.lang.CharSequence)value$; break;
+    case 0: id = (java.lang.Integer)value$; break;
+    case 1: name = (java.lang.CharSequence)value$; break;
+    case 2: age = (java.lang.Integer)value$; break;
+    case 3: favorite_color = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
+  }
+
+  /**
+   * Gets the value of the 'id' field.
+   */
+  public java.lang.Integer getId() {
+    return id;
+  }
+
+  /**
+   * Sets the value of the 'id' field.
+   * @param value the value to set.
+   */
+  public void setId(java.lang.Integer value) {
+    this.id = value;
   }
 
   /**
@@ -116,6 +135,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<User>
     implements org.apache.avro.data.RecordBuilder<User> {
 
+    private int id;
     private java.lang.CharSequence name;
     private int age;
     private java.lang.CharSequence favorite_color;
@@ -128,35 +148,67 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     /** Creates a Builder by copying an existing Builder */
     private Builder(avrotest.avro.User.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.name)) {
-        this.name = data().deepCopy(fields()[0].schema(), other.name);
+      if (isValidValue(fields()[0], other.id)) {
+        this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.age)) {
-        this.age = data().deepCopy(fields()[1].schema(), other.age);
+      if (isValidValue(fields()[1], other.name)) {
+        this.name = data().deepCopy(fields()[1].schema(), other.name);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.favorite_color)) {
-        this.favorite_color = data().deepCopy(fields()[2].schema(), other.favorite_color);
+      if (isValidValue(fields()[2], other.age)) {
+        this.age = data().deepCopy(fields()[2].schema(), other.age);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.favorite_color)) {
+        this.favorite_color = data().deepCopy(fields()[3].schema(), other.favorite_color);
+        fieldSetFlags()[3] = true;
       }
     }
     
     /** Creates a Builder by copying an existing User instance */
     private Builder(avrotest.avro.User other) {
             super(avrotest.avro.User.SCHEMA$);
-      if (isValidValue(fields()[0], other.name)) {
-        this.name = data().deepCopy(fields()[0].schema(), other.name);
+      if (isValidValue(fields()[0], other.id)) {
+        this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.age)) {
-        this.age = data().deepCopy(fields()[1].schema(), other.age);
+      if (isValidValue(fields()[1], other.name)) {
+        this.name = data().deepCopy(fields()[1].schema(), other.name);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.favorite_color)) {
-        this.favorite_color = data().deepCopy(fields()[2].schema(), other.favorite_color);
+      if (isValidValue(fields()[2], other.age)) {
+        this.age = data().deepCopy(fields()[2].schema(), other.age);
         fieldSetFlags()[2] = true;
       }
+      if (isValidValue(fields()[3], other.favorite_color)) {
+        this.favorite_color = data().deepCopy(fields()[3].schema(), other.favorite_color);
+        fieldSetFlags()[3] = true;
+      }
+    }
+
+    /** Gets the value of the 'id' field */
+    public java.lang.Integer getId() {
+      return id;
+    }
+    
+    /** Sets the value of the 'id' field */
+    public avrotest.avro.User.Builder setId(int value) {
+      validate(fields()[0], value);
+      this.id = value;
+      fieldSetFlags()[0] = true;
+      return this; 
+    }
+    
+    /** Checks whether the 'id' field has been set */
+    public boolean hasId() {
+      return fieldSetFlags()[0];
+    }
+    
+    /** Clears the value of the 'id' field */
+    public avrotest.avro.User.Builder clearId() {
+      fieldSetFlags()[0] = false;
+      return this;
     }
 
     /** Gets the value of the 'name' field */
@@ -166,21 +218,21 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     
     /** Sets the value of the 'name' field */
     public avrotest.avro.User.Builder setName(java.lang.CharSequence value) {
-      validate(fields()[0], value);
+      validate(fields()[1], value);
       this.name = value;
-      fieldSetFlags()[0] = true;
+      fieldSetFlags()[1] = true;
       return this; 
     }
     
     /** Checks whether the 'name' field has been set */
     public boolean hasName() {
-      return fieldSetFlags()[0];
+      return fieldSetFlags()[1];
     }
     
     /** Clears the value of the 'name' field */
     public avrotest.avro.User.Builder clearName() {
       name = null;
-      fieldSetFlags()[0] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -191,20 +243,20 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     
     /** Sets the value of the 'age' field */
     public avrotest.avro.User.Builder setAge(int value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.age = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this; 
     }
     
     /** Checks whether the 'age' field has been set */
     public boolean hasAge() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
     
     /** Clears the value of the 'age' field */
     public avrotest.avro.User.Builder clearAge() {
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -215,21 +267,21 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     
     /** Sets the value of the 'favorite_color' field */
     public avrotest.avro.User.Builder setFavoriteColor(java.lang.CharSequence value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.favorite_color = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this; 
     }
     
     /** Checks whether the 'favorite_color' field has been set */
     public boolean hasFavoriteColor() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
     
     /** Clears the value of the 'favorite_color' field */
     public avrotest.avro.User.Builder clearFavoriteColor() {
       favorite_color = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -237,9 +289,10 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     public User build() {
       try {
         User record = new User();
-        record.name = fieldSetFlags()[0] ? this.name : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.age = fieldSetFlags()[1] ? this.age : (java.lang.Integer) defaultValue(fields()[1]);
-        record.favorite_color = fieldSetFlags()[2] ? this.favorite_color : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
+        record.name = fieldSetFlags()[1] ? this.name : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.age = fieldSetFlags()[2] ? this.age : (java.lang.Integer) defaultValue(fields()[2]);
+        record.favorite_color = fieldSetFlags()[3] ? this.favorite_color : (java.lang.CharSequence) defaultValue(fields()[3]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
