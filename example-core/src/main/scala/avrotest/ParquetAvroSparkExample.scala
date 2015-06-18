@@ -250,6 +250,8 @@ object ParquetAvroSparkExample {
     val usersDataFrame:DataFrame = sqc.read.parquet(userParquetFilePath.toString())
     val messagesDataFrame:DataFrame = sqc.read.parquet(messageParquetFilePath.toString())
 
+    val usersMessagesDataFrame:DataFrame = usersDataFrame.join(messagesDataFrame, usersDataFrame("id") === messagesDataFrame("sender"), "inner")
+
     println("")
     println("******************************************************************");
     println("******************************************************************");
@@ -258,18 +260,17 @@ object ParquetAvroSparkExample {
     //dataFrame.printSchema()
 
     //This example show the messages sent by the users with the id between 20 and 30
-    usersDataFrame.join(messagesDataFrame, usersDataFrame("id") === messagesDataFrame("sender"), "inner")
-                  .select("id", "name", "age", "favorite_color", "recipient", "content")
-                  .filter("id >= 20").filter("id <= 30")
-                  .show()
+
+    usersMessagesDataFrame.select("id", "name", "age", "favorite_color", "recipient", "content")
+                          .filter("id >= 20").filter("id <= 30")
+                          .show()
 
     //This example show you how to select the users who sent message(s) to themself
-    usersDataFrame.join(messagesDataFrame, usersDataFrame("id") === messagesDataFrame("sender"), "inner")
-      .filter("sender = recipient")
-      .select("id", "name", "age", "favorite_color", "recipient", "content")
-      .filter("id >= 20").filter("id <= 30")
-      .show()
-
+    usersMessagesDataFrame.filter("sender = recipient")
+                          .select("id", "name", "age", "favorite_color", "recipient", "content")
+                          .filter("id >= 20")
+                          .filter("id <= 30")
+                          .show()
 
     println("******************************************************************");
     println("******************************************************************");
