@@ -1,7 +1,8 @@
 Spark SQL, Avro and Parquet
 ===========================
 
-This tutorial shows how to query data stored as Avro objects stored
+This tutorial is based on the following tutorial: https://github.com/AndreSchumacher/avro-parquet-spark-example
+It shows how to query data stored as Avro objects stored
 inside a columnar format (Parquet) via the Spark query
 interface. The main intention of the tutorial is to show the seamless
 integration of the functional RDD operators that come with Spark and
