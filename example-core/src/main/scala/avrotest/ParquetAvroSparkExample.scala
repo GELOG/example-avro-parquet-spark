@@ -260,7 +260,6 @@ object ParquetAvroSparkExample {
     //dataFrame.printSchema()
 
     //This example show the messages sent by the users with the id between 20 and 30
-
     usersMessagesDataFrame.select("id", "name", "age", "favorite_color", "recipient", "content")
                           .filter("id >= 20").filter("id <= 30")
                           .show()
