@@ -125,7 +125,7 @@ val dataFrame:DataFrame = sqc.read.parquet(DATA_PATH + fileName)
 ```
 
 
-Querying the user and message databases
+Querying the Genotype databases
 ---------------------------------------
 
 After the files have been registered, they can queried via Spark functionalities, for example:
