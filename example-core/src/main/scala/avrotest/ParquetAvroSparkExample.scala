@@ -54,8 +54,8 @@ object ParquetAvroSparkExample {
     //Create a Spark Context and wrap it inside a SQLContext
     sqc = new SQLContext(new SparkContext(conf))
 
-    //genotype_test()
-    userAndMessages_test()
+    genotype_test()
+    //userAndMessages_test()
 
 
     //Close Spark to free up the memory
@@ -75,7 +75,7 @@ object ParquetAvroSparkExample {
 
     //This call generates some Genotype classes and saves it in a Parquet file.  You can comment this line if you don't
     //want to re-generate the Parquet file everytime you test this program.
-    createGenotypesParquetFile(NUMBER_OF_GENOTYPE, parquetFilePath)
+    //createGenotypesParquetFile(NUMBER_OF_GENOTYPE, parquetFilePath)
 
     //This function query the Genotype parquet file
     queryGenotypeFile(parquetFilePath);
@@ -227,11 +227,11 @@ object ParquetAvroSparkExample {
     println("******************************************************************");
     println("******************************************************************");
 
-    //Prints the schema of the Parquet file
-    //dataFrame.printSchema()
+    dataFrame.write.parquet(DATA_PATH + "genotypes2.parquet");
 
-    //Select some data and output it to the console
-    dataFrame.select("variant.start", "variant.end").filter("start >= 20").filter("start <= 30").show()
+    val dataFrame2:DataFrame = sqc.read.parquet(DATA_PATH + "genotypes2.parquet")
+
+    dataFrame2.select("variant.start", "variant.end").filter("start >= 20").filter("start <= 30").show()
 
     println("******************************************************************");
     println("******************************************************************");
@@ -256,10 +256,7 @@ object ParquetAvroSparkExample {
     println("******************************************************************");
     println("******************************************************************");
 
-    //Prints the schema of the Parquet file
-    //dataFrame.printSchema()
-
-    //This example show the messages sent by the users with the id between 20 and 30
+      //This example show the messages sent by the users with the id between 20 and 30
     usersMessagesDataFrame.select("id", "name", "age", "favorite_color", "recipient", "content")
                           .filter("id >= 20").filter("id <= 30")
                           .show()
