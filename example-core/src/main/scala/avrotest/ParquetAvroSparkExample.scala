@@ -50,12 +50,15 @@ object ParquetAvroSparkExample {
   def main(args: Array[String])
   {
     //Initialize Spark; this variable is always required
-    conf = new SparkConf(true).setAppName("ParquetAvroExample").setMaster("local[2]")
+
+    conf = new SparkConf(true).setAppName("ParquetAvroExample").setMaster("local").set("spark.driver.allowMultipleContexts", "true")
+    new SparkContext(conf)
+
     //Create a Spark Context and wrap it inside a SQLContext
     sqc = new SQLContext(new SparkContext(conf))
 
-    genotype_test()
-    //userAndMessages_test()
+    //genotype_test()
+    userAndMessages_test()
 
 
     //Close Spark to free up the memory
@@ -285,7 +288,6 @@ object ParquetAvroSparkExample {
     //Define the Users and Messages parquet file paths
     val userParquetFilePath:Path = new Path(DATA_PATH, "users.parquet")
     val messageParquetFilePath:Path = new Path(DATA_PATH, "messages.parquet")
-
 
     createUsersParquetFile(NUMBER_OF_USERS, userParquetFilePath)
     createMessagesParquetFile(NUMBER_OF_USERS, NUMBER_OF_MESSAGES, messageParquetFilePath)
